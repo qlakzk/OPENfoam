@@ -1,0 +1,319 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                |
+| \\      /  F ield         | cfMesh: A library for mesh generation          | 
+|  \\    /   O peration     |                                                |
+|   \\  /    A nd           | Author: Franjo Juretic                         | 
+|    \\/     M anipulation  | E-mail: franjo.juretic@c-fields.com            |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version   2.0;
+    format    ascii;
+    class     dictionary;
+    location  "system";
+    object    meshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+surfaceFile "IMSI3.fms";
+
+maxCellSize 0.015;
+
+boundaryCellSize 0.015;
+
+localRefinement
+{
+	"w4"
+	{
+		additionalRefinementLevels 3;
+	}
+	"l1"
+	{
+		additionalRefinementLevels 3;
+	}
+	"l2"
+	{
+		additionalRefinementLevels 3;
+	}
+}
+
+objectRefinements
+{
+    burnerzone1
+    {
+        type            cone;
+        additionalRefinementLevels 3;
+        p0 (0 0.125 0.125);
+        p1 (0.046 0.125 0.125);
+        radius0 0.055;
+        radius1 0.055;
+    }
+/*    burnerzone2
+    {
+        type            cone;
+        cellSize 0.001;
+        p0 (0.046 0.125 0.125);
+        p1 (0.069 0.125 0.125);
+        radius0 0.055;
+        radius1 0.055;
+    }
+    burnerzone3
+    {
+        type            cone;
+        cellSize 0.001;
+        p0 (0.069 0.125 0.125);
+        p1 (0.12 0.125 0.125);
+        radius0 0.055;
+        radius1 0.055;
+    }*/
+    burner2
+    {
+        type            hollowCone;
+        cellSize 0.0003;
+//        additionalRefinementLevels 6;
+        p0 (0.0795 0.125 0.125);
+        p1 (0.0805 0.125 0.125);
+        radius0_Inner 0.0145;
+        radius0_Outer 0.016;
+        radius1_Inner 0.0145;
+        radius1_Outer 0.016;
+    }
+    burner3
+    {
+        type            hollowCone;
+//        additionalRefinementLevels 5;
+        cellSize 0.0006;
+        p0 (0.079 0.125 0.125);
+        p1 (0.081 0.125 0.125);
+        radius0_Inner 0.016;
+        radius0_Outer 0.019;
+        radius1_Inner 0.016;
+        radius1_Outer 0.019;
+    }
+    burner5
+    {
+        type            cone;
+        cellSize 0.00075; //0.00075
+//        additionalRefinementLevels 5;
+        p0 (0.094 0.125 0.125);
+        p1 (0.1 0.125 0.125);
+        radius0 0.0123;
+        radius1 0.0123;
+    }
+    burner6
+    {
+        type            hollowCone;
+        cellSize 0.0010;
+//        additionalRefinementLevels 5;
+        p0 (0.07 0.125 0.125); //0.069 0.06829
+        p1 (0.0452 0.125 0.125); //0.046  0.047
+        radius0_Inner 0.0355;
+        radius0_Outer 0.0425;
+        radius1_Inner 0.0355;
+        radius1_Outer 0.0425;
+    }
+
+    
+    
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*objectRefinements
+{
+
+    burnerfront2
+    {
+        type            cone;
+        cellSize 0.003; //0.04
+        p0 (0.1 0.125 0.125);
+        p1 (0.2125 0.125 0.125);
+        radius0 0.06;
+        radius1 0.04;
+    }
+    burnerzone1
+    {
+        type            cone;
+        cellSize 0.003; //0.003
+        p0 (0 0.125 0.125);
+        p1 (0.1 0.125 0.125);
+        radius0 0.055;
+        radius1 0.055;
+    }
+    burnermid1
+    {
+        type            hollowCone;
+        cellSize 0.0015; //0.0001
+        p0 (0.07 0.125 0.125);
+        p1 (0.043 0.125 0.125);
+        radius0_Inner 0.019;
+        radius0_Outer 0.0263;
+        radius1_Inner 0.019;
+        radius1_Outer 0.0263;
+    }
+    burnermid2
+    {
+        type            hollowCone;
+        cellSize 0.0015;
+        p0 (0.043 0.125 0.125);
+        p1 (0 0.125 0.125);
+        radius0_Inner 0.03;
+        radius0_Outer 0.032;
+        radius1_Inner 0.03;
+        radius1_Outer 0.032;
+    }
+    
+    burnerside1
+    {
+        type            hollowCone;
+        cellSize 0.00015; //0.0001
+        p0 (0.081 0.125 0.125);
+        p1 (0.079 0.125 0.125);
+        radius0_Inner 0.01425;
+        radius0_Outer 0.015;
+        radius1_Inner 0.01425;
+        radius1_Outer 0.015;
+    }
+    
+    burnerside2
+    {
+        type            hollowCone;
+        cellSize 0.0003; //0.0003
+        p0 (0.082 0.125 0.125);
+        p1 (0.078 0.125 0.125);
+        radius0_Inner 0.015;
+        radius0_Outer 0.017;
+        radius1_Inner 0.015;
+        radius1_Outer 0.017;
+    }
+    burnerside3
+    {
+        type            hollowCone;
+        cellSize 0.0006; //0.0006
+        p0 (0.082 0.125 0.125);
+        p1 (0.078 0.125 0.125);
+        radius0_Inner 0.017;
+        radius0_Outer 0.02;
+        radius1_Inner 0.017;
+        radius1_Outer 0.02;
+    }
+    burnerzone3
+    {
+        type            cone;
+        cellSize 0.0006; //0.0006
+        p0 (0.094 0.125 0.125);
+        p1 (0.1 0.125 0.125);
+        radius0 0.0123;
+        radius1 0.0123;
+    }
+    burnerzone4
+        {
+        type            hollowCone;
+        cellSize 0.0009;
+        p0 (0.07 0.125 0.125);
+        p1 (0.045 0.125 0.125);
+        radius0_Inner 0.0355;
+        radius0_Outer 0.0425;
+        radius1_Inner 0.0355;
+        radius1_Outer 0.0425;
+    }
+
+}
+*/
+/*
+surfaceFile "IMSI.fms";
+
+maxCellSize 0.03;
+
+localRefinement
+{
+	"w1"
+	{
+		additionalRefinementLevels 6; //cellSize 0.0003;
+	}
+	"w2"
+	{
+		additionalRefinementLevels 8; //cellSize 0.00015;
+	}
+	"w3"
+	{
+		additionalRefinementLevels 5; //0.00075
+	}
+	"w4"
+	{
+		additionalRefinementLevels 1;
+	}
+	"l1"
+	{
+		additionalRefinementLevels 1; //0.015
+	}
+	"l2"
+	{
+		additionalRefinementLevels 1;
+	}
+	"outlet"
+	{
+		additionalRefinementLevels 0;
+	}
+	
+}
+
+objectRefinements
+{
+	outlet
+	{
+		type		box;
+		cellSize 	0.03;
+		centre		(0.55 0.125 0.125);
+		lengthX		0.90;
+		lengthY		0.25;
+		lengthZ		0.25;
+	}
+	inlet
+	{
+		type		box;
+		cellSize 	0.003;
+		centre		(0.075 0.125 0.125);
+		lengthX		0.15;
+		lengthY		0.125;
+		lengthZ		0.125;
+	}
+    burnermid1
+    {
+        type            hollowCone;
+        cellSize 0.0018; //0.0015
+        p0 (0.043 0.125 0.125);
+        p1 (0.1 0.125 0.125);
+        radius0_Inner 0.02;
+        radius0_Outer 0.03;
+        radius1_Inner 0.02;
+        radius1_Outer 0.03;
+    }
+}
+/*
+boundaryLayers
+{
+	patchBoundaryLayers
+	{
+		w4
+		{
+			nLayers 2;
+			thicknessRatio 1.5;
+		}
+		/*
+		l1
+		{
+			nLayers 2;
+			thicknessRatio 1.5;
+		}
+		l2
+		{
+			nLayers 2;
+			thicknessRatio 1.5;
+		}
+	}
+}
+*/
+
+// ************************************************************************* //

@@ -1,0 +1,188 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+    // inletSetting
+    {
+        name    l1-1_CellSet;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        box     (0.42 0.127 0.127) (0.425 0.135 0.135);
+    }
+    {
+        name    l1-1;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        set     l1-1_CellSet;
+    }
+//    {
+//        name    l1-2_CellSet;
+//        type    cellSet;
+//        action  new;
+//        source  boxToCell;
+//        box     (0.305 0.127 0.127) (0.31 0.135 0.135);
+//    }
+//    {
+//        name    l1-2;
+//        type    cellZoneSet;
+//        action  new;
+//        source  setToCellZone;
+//        set     l1-2_CellSet;
+//    }
+
+
+
+    {
+        name    l2-1_CellSet;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        box     (0.42 0.16 0.12) (0.425 0.181 0.141);
+    }
+    {
+        name    l2-1;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        set     l2-1_CellSet;
+    }
+//    {
+//        name    l2-2_CellSet;
+//        type    cellSet;
+//        action  new;
+//        source  boxToCell;
+//        box     (0.305 0.16 0.12) (0.31 0.181 0.141);
+//    }
+//    {
+//        name    l2-2;
+//        type    cellZoneSet;
+//        action  new;
+//        source  setToCellZone;
+//        set     l2-2_CellSet;
+//    }
+    {
+        name    e-1_CellSet;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        box     (0.566 0.1297 0.1697) (0.569 0.1329 0.173);
+    }
+    {
+        name    e-1;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        set     e-1_CellSet;
+    }
+
+
+
+
+
+
+
+
+
+
+    {
+        name    l1_FaceSet;
+        type    faceSet;
+        action  new;
+        source  cellToFace;
+        set     l1-1_CellSet;
+        option  all;
+    }
+    {
+        name    l1_FaceSet;
+        type    faceSet;
+        action  subset;
+        source  patchToFace;
+        patch   allBoundary;
+        option  all;
+    }
+    {
+        name    l2_FaceSet;
+        type    faceSet;
+        action  new;
+        source  cellToFace;
+        set     l2-1_CellSet;
+        option  all;
+    }
+    {
+        name    l2_FaceSet;
+        type    faceSet;
+        action  subset;
+        source  patchToFace;
+        patch   allBoundary;
+        option  all;
+    }
+    {
+        name    e1_FaceSet;
+        type    faceSet;
+        action  new;
+        source  cellToFace;
+        set     e-1_CellSet;
+        option  all;
+    }
+    {
+        name    e1_FaceSet;
+        type    faceSet;
+        action  subset;
+        source  patchToFace;
+        patch   w1;
+        option  all;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+        name    l1;
+        type    faceZoneSet;
+        action  new;
+        source  setToFaceZone;
+        faceSet l1_FaceSet;
+    }
+    {
+        name    l2;
+        type    faceZoneSet;
+        action  new;
+        source  setToFaceZone;
+        faceSet l2_FaceSet;
+    }
+    {
+        name    e1;
+        type    faceZoneSet;
+        action  new;
+        source  setToFaceZone;
+        faceSet e1_FaceSet;
+    }
+    
+    
+    
+);
+// ************************************************************************* //

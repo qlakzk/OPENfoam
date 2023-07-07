@@ -1,0 +1,249 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7  
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+castellatedMesh true;
+snap            true;
+addLayers       false;
+
+geometry
+{
+    w1
+    {
+        type triSurfaceMesh;
+        file "w1.stl";
+    }
+    w2
+    {
+        type triSurfaceMesh;
+        file "w2.stl";
+    }
+    w3
+    {
+        type triSurfaceMesh;
+        file "w3.stl";
+    }
+    w4
+    {
+        type triSurfaceMesh;
+        file "w4.stl";
+    }
+    w5
+    {
+        type triSurfaceMesh;
+        file "w5.stl";
+    }
+    l1
+    {
+        type triSurfaceMesh;
+        file "l1.stl";
+    }
+    l2
+    {
+        type triSurfaceMesh;
+        file "l2.stl";
+    }
+    outlet
+    {
+        type triSurfaceMesh;
+        file "outlet.stl";
+    }
+}
+
+
+castellatedMeshControls
+{
+
+    maxLocalCells 100000000; //100000
+
+    maxGlobalCells 2000000000; //2000000
+
+    minRefinementCells 0;
+
+    nCellsBetweenLevels 4; //2
+
+    maxLoadUnbalance 0.10;
+
+    features
+    (
+      
+        {
+            file "w1.eMesh";
+            level 0;
+        }
+        {
+            file "w2.eMesh";
+            level 0;
+        }
+        {
+            file "w3.eMesh";
+            level 0;
+        }
+        {
+            file "w4.eMesh";
+            level 0;
+        }
+        {
+            file "w5.eMesh";
+            level 0;
+        }
+        {
+            file "l1.eMesh";
+            level 0;
+        }
+        {
+            file "l2.eMesh";
+            level 0;
+        }
+        {
+            file "outlet.eMesh";
+            level 0;
+        }
+    );
+
+    resolveFeatureAngle 80;
+
+    refinementSurfaces
+    {
+        w1
+        {
+            level (4 4);
+	}
+        w2
+        {
+            level (6 6);
+	}
+        w3
+        {
+            level (4 4);
+	}
+	w4
+        {
+            level (2 2);
+	}
+	w5
+        {
+            level (0 0);
+	}	
+	l1
+        {
+            level (3 3);
+	}
+	l2
+        {
+            level (2 2);
+	}
+	outlet
+        {
+            level (0 0);
+	}
+		
+    }
+
+    refinementRegions
+    {
+
+    }
+
+    locationInMesh (0.6 0.5 0.5); // Inside point
+
+    allowFreeStandingZoneFaces true;
+}
+
+// Settings for the snapping.
+snapControls
+{
+
+    nSmoothPatch 3;
+
+    tolerance 3;//1
+
+    nSolveIter 300;
+
+    nRelaxIter 10;
+
+    nFeatureSnapIter 10;
+
+    implicitFeatureSnap false; //true
+
+    explicitFeatureSnap true; //false
+
+    multiRegionFeatureSnap true;//true
+}
+
+// Settings for the layer addition.
+addLayersControls
+{
+
+    relativeSizes true;
+
+    layers
+    {
+	eje_central.stl
+	{
+	   nSurfaceLayers 2;
+	}
+    }
+
+    expansionRatio 1.0;
+
+    finalLayerThickness 0.3;
+
+    minThickness 0.25;
+
+    nGrow 0;
+
+    featureAngle 30;
+
+    nRelaxIter 5;
+
+    nSmoothSurfaceNormals 1;
+
+    nSmoothNormals 3;
+
+    nSmoothThickness 10;
+
+    maxFaceThicknessRatio 0.5;
+
+    maxThicknessToMedialRatio 0.3;
+
+    minMedianAxisAngle 90;
+
+    nBufferCellsNoExtrude 0;
+
+    nLayerIter 50;
+
+    nRelaxedIter 20;
+}
+
+meshQualityControls
+{
+    #include "meshQualityDict"
+
+    relaxed
+    {
+        maxNonOrtho 65;
+    }
+}
+
+writeFlags
+(
+);
+
+mergeTolerance 1E-6;
+
+
+// ************************************************************************* //
