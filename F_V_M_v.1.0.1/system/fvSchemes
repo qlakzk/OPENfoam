@@ -14,17 +14,17 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-ddtSchemes
+ddtSchemes //시간통합방법
 {
     default         Euler;
 }
 
-gradSchemes
+gradSchemes //기울기계산방법
 {
     default         Gauss linear;
 }
 
-divSchemes
+divSchemes //발산 행 계산 방법
 {
     default         none;
 
@@ -37,12 +37,12 @@ divSchemes
     div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
 }
 
-laplacianSchemes
+laplacianSchemes //라플라스 연산자 계산 방법
 {
     default         Gauss linear corrected;
 }
 
-interpolationSchemes
+interpolationSchemes //보간방법
 {
     default         linear;
 }
