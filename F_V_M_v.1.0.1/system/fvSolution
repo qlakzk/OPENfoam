@@ -89,6 +89,7 @@ PIMPLE
     alphaY              0.05;
     Yref
     {
+        H2                  0.1;
         O2                  0.1;
         CH4                 0.1;
     }
